@@ -23,6 +23,12 @@ export default function EscolherSessao() {
                     </div>
                 </Horario>
             </div>
+            <Rodape>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/pt/2/22/Titanic_poster.jpg" alt=""/>                    
+                </div>                
+                <p>Titanic</p>                
+            </Rodape>
         </Body>
     )
 }
@@ -75,5 +81,35 @@ const Horario = styled.div`
     p{
         color: white;
         font-size: 18px;
+    }
+`
+const Rodape = styled.div`
+    max-width: 375px;
+    height: 115px;
+    background-color: #C3CFD9;
+    margin-top:300px;
+    display: flex;
+    align-items: center;    
+    div{
+        margin-left: 15px;
+        width:65px;
+        height: 90px;
+        background: #FFFFFF;
+        box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width:50px;
+            height: 75px;
+            border-radius:3px;
+        }
+    }
+    p{
+        margin-left: 15px;
+        font-weight: 400;
+        font-size: 26px;
+        color: #293845;
     }
 `

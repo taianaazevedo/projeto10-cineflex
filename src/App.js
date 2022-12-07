@@ -9,8 +9,8 @@ function App() {
     <>
     <GlobalStyle/>
     {/* <EscolherFilme/> */}
-    {/* <EscolherSessao/> */}
-    <EscolherAssento/>
+    <EscolherSessao/>
+    {/* <EscolherAssento/> */}
     </>
   );
 }
