@@ -4,13 +4,17 @@ import { useEffect, useState } from "react";
 
 export default function PaginaInicial() {
 
-    // const [filme, setFilme] = useState(null)
+    const [filme, setFilme] = useState(null)
 
-    // useEffect(() => {
-    //     const promise = axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies")
-    //     promise.then(resposta => setFilme(resposta.data))
-    //     promise.catch(erro => console.log(erro.response.data))
-    // }, [])
+    useEffect(() => {
+        const promise = axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies")
+        promise.then(resposta => setFilme(resposta.data))
+        promise.catch(erro => console.log(erro.response.data))
+    }, [])
+
+    if(filme === null){
+        return <div>Carregando...</div>
+      }
 
     return (
         <Inicio>
@@ -21,10 +25,10 @@ export default function PaginaInicial() {
                 <p>Selecione o filme</p>
             </SelecionarFilme>
             <ListaFilmes>
-                {/* {filme.map((filme) => (
+                {filme.map((filme) => (
                     <Filme key={filme.id}>
                         <img src={filme.posterURL} alt={filme.title} />
-                    </Filme>))} */}
+                    </Filme>))}
             </ListaFilmes>
         </Inicio>
     )
