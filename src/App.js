@@ -1,4 +1,6 @@
-import PaginaInicial from "./components/PaginaInicial";
+import EscolherFilme from "./components/EscolherFilme";
+import EscolherSessao from "./components/EscolherSessao";
+import EscolherAssento from "./components/EscolherAssento";
 import GlobalStyle from "./components/GlobalStyles";
 
 
@@ -6,7 +8,9 @@ function App() {
   return (
     <>
     <GlobalStyle/>
-    <PaginaInicial/>
+    {/* <EscolherFilme/> */}
+    {/* <EscolherSessao/> */}
+    <EscolherAssento/>
     </>
   );
 }

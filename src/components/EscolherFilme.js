@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Header from "./Header";
 
-export default function PaginaInicial() {
+
+export default function EscolherFilme() {
 
     const [filme, setFilme] = useState(null)
 
@@ -12,33 +14,34 @@ export default function PaginaInicial() {
         promise.catch(erro => console.log(erro.response.data))
     }, [])
 
-    if(filme === null){
+    if (filme === null) {
         return <div>Carregando...</div>
-      }
+    }
 
     return (
-        <Inicio>
-            <Header>
-                <p>CINEFLEX</p>
-            </Header>
-            <SelecionarFilme>
-                <p>Selecione o filme</p>
-            </SelecionarFilme>
-            <ListaFilmes>
-                {filme.map((filme) => (
-                    <Filme key={filme.id}>
-                        <img src={filme.posterURL} alt={filme.title} />
-                    </Filme>))}
-            </ListaFilmes>
-        </Inicio>
+        <>
+            <Body>
+                <Header />
+                <SelecionarFilme>
+                    <p>Selecione o filme</p>
+                </SelecionarFilme>
+                <ListaFilmes>
+                    {filme.map((filme) => (
+                        <Filme key={filme.id}>
+                            <img src={filme.posterURL} alt={filme.title} />
+                        </Filme>))}
+                </ListaFilmes>
+            </Body>
+        </>
     )
 }
-
-const Inicio = styled.div`
+const Body = styled.div`
     max-width: 375px;
-    height: 800px;
+    height: auto;
     margin: 0px auto 5px auto;
+    background-color: #FCFCFC;
 `
+
 const SelecionarFilme = styled.div`
     max-width: 375px;
     height: 80px;
@@ -47,22 +50,9 @@ const SelecionarFilme = styled.div`
     justify-content: center;
     margin: 0px auto 0px auto;
     p {        
-        font-weight: 300;
-        font-size: 25px;        
-    }
-`
-const Header = styled.div`
-    max-width: 375px;
-    height: 70px;
-    background-color: #C3CFD9;
-    margin: 0px auto 0px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    p {
-        font-weight: 700;
-        color: #E8833A;
-        font-size: 35px;        
+        font-weight: 400;
+        font-size: 25px; 
+        color: #293845;       
     }
 `
 const ListaFilmes = styled.div`
@@ -74,8 +64,8 @@ const ListaFilmes = styled.div`
     margin: 5px auto 0px auto;
 `
 const Filme = styled.div`
-    margin-bottom: 10px;
-    width: 145px;
+    margin-bottom: 15px;
+    width: 150px;
     height: 200px;
     display: flex;
     align-items: center;
@@ -85,7 +75,7 @@ const Filme = styled.div`
     border-radius: 3px;
     img {
         width: 130px;
-        height: 190px;  
+        height: 185px;  
         border-radius: 3px;      
     }
 `
