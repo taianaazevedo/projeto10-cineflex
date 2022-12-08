@@ -9,13 +9,15 @@ export default function Head() {
 }
 
 const Header = styled.div`
-    max-width: 375px;
+    width: 100%;
     height: 70px;
     background-color: #C3CFD9;
-    margin: 0px auto 0px auto;
+    position:fixed;
+    top:0px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
     p {
         font-weight: 700;
         color: #E8833A;

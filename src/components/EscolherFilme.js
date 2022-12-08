@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Header from "./Header";
+import { Link } from "react-router-dom";
 
 
 export default function EscolherFilme() {
 
-    const [filme, setFilme] = useState(null)
+    const [filme, setFilme] = useState(undefined)
 
     useEffect(() => {
         const promise = axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies")
@@ -14,36 +14,38 @@ export default function EscolherFilme() {
         promise.catch(erro => console.log(erro.response.data))
     }, [])
 
-    if (filme === null) {
+    if (filme === undefined) {
         return <div>Carregando...</div>
     }
 
     return (
         <>
             <Body>
-                <Header />
                 <SelecionarFilme>
                     <p>Selecione o filme</p>
                 </SelecionarFilme>
                 <ListaFilmes>
                     {filme.map((filme) => (
-                        <Filme key={filme.id}>
+                         <Filme key={filme.id}>
+                            <Link to={`/sessoes/${filme.id}`}>
                             <img src={filme.posterURL} alt={filme.title} />
+                            </Link>
                         </Filme>))}
                 </ListaFilmes>
             </Body>
         </>
     )
 }
+
 const Body = styled.div`
-    max-width: 375px;
-    height: auto;
+    max-width: 400px;
+    height: 800px;
     margin: 0px auto 5px auto;
     background-color: #FCFCFC;
 `
-
 const SelecionarFilme = styled.div`
-    max-width: 375px;
+   
+    width:100%;
     height: 80px;
     display: flex;
     align-items: center;
@@ -60,8 +62,8 @@ const ListaFilmes = styled.div`
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    max-width: 375px;
-    margin: 5px auto 0px auto;
+    width:100%;
+    margin: 10px auto 0px auto;
 `
 const Filme = styled.div`
     margin-bottom: 15px;
@@ -73,6 +75,7 @@ const Filme = styled.div`
     background: #FFFFFF;
     box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
     border-radius: 3px;
+    cursor: pointer;
     img {
         width: 130px;
         height: 185px;  

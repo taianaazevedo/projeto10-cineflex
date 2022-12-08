@@ -1,15 +1,29 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import Header from "./Header"
+import axios from "axios";
+import { useState } from "react";
+
 
 export default function EscolherSessao() {
+    // const { idFilme } = useParams();
+    // const [filmeSelecionado, setFilmeSelecionado] = useState(undefined); // informações da sessão
+
+    // useEffect(() => {
+    //     const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`);
+    //     promise.then(resposta => console.log(resposta.data));
+    //     promise.catch(erro => console.log(erro.response.data));
+    // }, [])
+
+
     return (
         <Body>
-            <Header />
             <SelecionarSessao>
                 <p>Selecione o horário</p>
             </SelecionarSessao>
+            {/* inicio do map */}
             <Dia>
-                <p>Quinta-feira: 24/06/2022</p>
+                <p>Quinta-feira: 08/12/2022</p>
             </Dia>
             <div>
                 <Horario>
@@ -17,25 +31,21 @@ export default function EscolherSessao() {
                         <p>20h30</p>
                     </div>
                 </Horario>
-                <Horario>
-                    <div>
-                        <p>15h30</p>
-                    </div>
-                </Horario>
             </div>
+            {/* fim do map */}
             <Rodape>
                 <div>
-                    <img src="https://upload.wikimedia.org/wikipedia/pt/2/22/Titanic_poster.jpg" alt=""/>                    
-                </div>                
-                <p>Titanic</p>                
+                    <img src="" alt="" />
+                </div>
+                <p>Titanic</p>
             </Rodape>
-        </Body>
+        </Body >
     )
 }
 
 
 const Body = styled.div`
-    max-width: 375px;
+    max-width: 100%;
     height: auto;
     margin: 0px auto 5px auto;
     background-color: #FCFCFC;
@@ -84,8 +94,10 @@ const Horario = styled.div`
     }
 `
 const Rodape = styled.div`
-    max-width: 375px;
+    width: 100%;
     height: 115px;
+    position: fixed;
+    bottom: 0px;
     background-color: #C3CFD9;
     margin-top:300px;
     display: flex;
