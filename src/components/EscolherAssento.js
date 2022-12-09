@@ -3,15 +3,187 @@ import styled from "styled-components";
 
 export default function EscolherSessao() {
     return (
+        <>
         <Body>
             <SelecionarAssento>
-                <p>Selecione a(s) poltrona(s)</p>
+                <p>Selecione o(s) assento(s)</p>
             </SelecionarAssento>
-            <AssentosDisponiveis>
+            <AssentosDisponiveis>     
                 <Assento>
                     <p>01</p>
-                </Assento>               
+                </Assento> 
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento> 
+                <Assento>
+                    <p>01</p>
+                </Assento> 
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento> 
+                <Assento>
+                    <p>01</p>
+                </Assento> 
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento> 
+                <Assento>
+                    <p>01</p>
+                </Assento> 
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>   
+                <Assento>
+                    <p>01</p>
+                </Assento> 
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento>  
+                <Assento>
+                    <p>01</p>
+                </Assento> 
+                <Assento>
+                    <p>01</p>
+                </Assento> 
+                <Assento>
+                    <p>01</p>
+                </Assento> 
+                <Assento>
+                    <p>01</p>
+                </Assento> 
+                
             </AssentosDisponiveis>
+
+            <Legenda>
+                <Selecionado>
+                    <div></div>
+                <p>Selecionado</p>
+                </Selecionado>
+                <Disponivel>
+                    <div></div>
+                <p>Disponível</p>
+                </Disponivel>
+                <Indisponivel>
+                    <div></div>
+                <p>Indisponível</p>
+                </Indisponivel>
+               
+            </Legenda>
+
+            <InfoNome>
+                <p>Nome do comprador:</p>
+                <input placeholder="Digite seu nome"></input>
+            </InfoNome>
+            <InfoCpf>
+                <p>CPF do comprador:</p>
+                <input placeholder="Digite seu CPF"></input>
+            </InfoCpf>
+            <Reservar>
+                Reservar assento(s)
+            </Reservar>
+            </Body>
             <Rodape>
                 <div>
                     <img src="https://upload.wikimedia.org/wikipedia/pt/2/22/Titanic_poster.jpg" alt="" />
@@ -21,22 +193,26 @@ export default function EscolherSessao() {
                     <p>Quinta-feira: 15h30</p>
                 </div>
             </Rodape>
-        </Body>
+            </>
+
     )
 }
 const Body = styled.div`
-    width: 100%;
-    height: auto;
+   max-width:450px;
+    height: 850px;
     margin: 0px auto 5px auto;
     background-color: #FCFCFC;
+    display: flex;
+    flex-direction:column;
 `
 const SelecionarAssento = styled.div`
- max-width: 375px;
- height: 80px;
- display: flex;
- align-items: center;
- justify-content: center;
- margin: 0px auto 0px auto;
+    max-width:450px;
+    min-width:300px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 80px auto 0px auto;
  p {        
      font-weight: 400;
      font-size: 25px; 
@@ -47,9 +223,9 @@ const AssentosDisponiveis = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-
+    max-width:600px;
+    min-width:300px;
 `
-
 const Assento = styled.div`
     background-color: #C3CFD9;
     margin: 5px;
@@ -65,9 +241,72 @@ const Assento = styled.div`
     }
 
 `
-
+const Legenda = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
+`
+const Selecionado = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    
+    div{
+        background-color: #1AAE9E;
+        margin: 5px;
+        width:25px;
+        height: 25px;
+        border-radius:50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #808F9D;
+    }
+    p{
+        font-size: 12px;
+    }
+`
+const Disponivel = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+      div{
+        background-color: #C3CFD9;
+        margin: 5px;
+        width:25px;
+        height: 25px;
+        border-radius:50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #808F9D;
+    }
+    p{
+        font-size: 12px;
+    }
+`
+const Indisponivel = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+      div{
+        background-color: #FBE192;
+        margin: 5px;
+        width:25px;
+        height: 25px;
+        border-radius:50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #808F9D;
+    }
+    p{
+        font-size: 12px;
+    }
+`
 const Rodape = styled.div`
-    width: 100%;
+    width:100%;
     height: 115px;
     background-color: #C3CFD9;
     position:fixed;
@@ -101,4 +340,53 @@ const Rodape = styled.div`
         color: #293845;
     }
 }
+`
+const InfoNome = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-left: 10px;
+    p{
+        color:#293845;
+        font-size: 18px;
+    }
+    input {
+        border: 1px;
+        border-radius:5px;
+        margin-top: 5px;
+        width:325px;
+        height: 40px;
+        box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+    }
+`
+const InfoCpf = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-bottom:15px;
+    p{
+        color:#293845;
+        font-size: 18px;
+    }
+    input {
+        border: 1px;
+        border-radius:5px;
+        margin-top: 5px;
+        width:325px;
+        height: 40px;
+        box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+    }
+`
+const Reservar = styled.button`
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 70px;
+    width:225px;
+    height:45px;
+    background-color:#E8833A;
+    border: none;
+    border-radius:10px;
+    color: white;
+    font-size:15px;
 `

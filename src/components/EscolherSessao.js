@@ -6,47 +6,56 @@ import { useState } from "react";
 
 
 export default function EscolherSessao() {
-    // const { idFilme } = useParams();
-    // const [filmeSelecionado, setFilmeSelecionado] = useState(undefined); // informações da sessão
+    const { idFilme } = useParams();
+    const [filme, setFilme] = useState(undefined); // informações da sessão
 
-    // useEffect(() => {
-    //     const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`);
-    //     promise.then(resposta => console.log(resposta.data));
-    //     promise.catch(erro => console.log(erro.response.data));
-    // }, [])
+
+    useEffect(() => {
+        const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`);
+        promise.then((resposta) => setFilme(resposta.data));
+        promise.catch((erro) => console.log(erro.response.data));
+    }, [])
+
+    if(!filme) return <div>Carregando...</div>
 
 
     return (
-        <Body>
-            <SelecionarSessao>
-                <p>Selecione o horário</p>
-            </SelecionarSessao>
-            {/* inicio do map */}
-            <Dia>
-                <p>Quinta-feira: 08/12/2022</p>
-            </Dia>
-            <div>
-                <Horario>
-                    <div>
-                        <p>20h30</p>
+        <>
+            <Body>
+                <SelecionarSessao>
+                    <p>Selecione o horário</p>
+                </SelecionarSessao>
+                
+                {filme.days.map((filme) => (
+                    <>
+                    <Dia>
+                    <p>{filme.weekday}: {filme.date}</p>
+                    </Dia>
+                    <div>        
+                        {filme.showtimes.map((horario) => (
+                             <Horario key={horario.id}>
+                             <div>
+                                 <p>{horario.name}</p>
+                             </div>
+                         </Horario>
+                        ))}
                     </div>
-                </Horario>
-            </div>
-            {/* fim do map */}
+                    </>
+                
+                ))}      
+            </Body >
             <Rodape>
                 <div>
-                    <img src="" alt="" />
+                    <img src={filme.posterURL} alt={filme.id} />
                 </div>
-                <p>Titanic</p>
+                <p>{filme.title}</p>
             </Rodape>
-        </Body >
+        </>
     )
 }
 
-
 const Body = styled.div`
-    max-width: 100%;
-    height: auto;
+    max-width: 450px;
     margin: 0px auto 5px auto;
     background-color: #FCFCFC;
     div{
@@ -59,7 +68,7 @@ const SelecionarSessao = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0px auto 0px auto;
+    margin: 80px auto 0px auto;
     p {        
         font-weight: 400;
         font-size: 25px; 

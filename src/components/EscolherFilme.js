@@ -38,7 +38,7 @@ export default function EscolherFilme() {
 }
 
 const Body = styled.div`
-    max-width: 400px;
+    max-width: 450px;
     height: 800px;
     margin: 0px auto 5px auto;
     background-color: #FCFCFC;
@@ -50,7 +50,7 @@ const SelecionarFilme = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0px auto 0px auto;
+    margin: 80px auto 0px auto;
     p {        
         font-weight: 400;
         font-size: 25px; 
@@ -67,6 +67,7 @@ const ListaFilmes = styled.div`
 `
 const Filme = styled.div`
     margin-bottom: 15px;
+    margin-right: 5px;
     width: 150px;
     height: 200px;
     display: flex;
