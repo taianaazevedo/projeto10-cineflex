@@ -20,45 +20,47 @@ export default function EscolherSessao() {
 
     return (
         <>
-        <Body>
-            <SelecionarAssento>
-                <p>Selecione o(s) assento(s)</p>
-            </SelecionarAssento>
-            <AssentosDisponiveis>     
-                {assento.seats.map((cadeira) => (
-                    <Assento id={cadeira.id}>
-                        <p>{cadeira.name}</p>
-                    </Assento>
-                ))}                
-            </AssentosDisponiveis>
+            <Body>
+                <SelecionarAssento>
+                    <p>Selecione o(s) assento(s)</p>
+                </SelecionarAssento>
+                <AssentosDisponiveis>
+                    {assento.seats.map((cadeira) => (
+                        <Assento id={cadeira.id}>
+                            <p>{cadeira.name}</p>
+                        </Assento>
+                    ))}
+                </AssentosDisponiveis>
 
-            <Legenda>
-                <Selecionado>
-                    <div></div>
-                <p>Selecionado</p>
-                </Selecionado>
-                <Disponivel>
-                    <div></div>
-                <p>Disponível</p>
-                </Disponivel>
-                <Indisponivel>
-                    <div></div>
-                <p>Indisponível</p>
-                </Indisponivel>
-               
-            </Legenda>
+                <Legenda>
+                    <Selecionado>
+                        <div></div>
+                        <p>Selecionado</p>
+                    </Selecionado>
+                    <Disponivel>
+                        <div></div>
+                        <p>Disponível</p>
+                    </Disponivel>
+                    <Indisponivel>
+                        <div></div>
+                        <p>Indisponível</p>
+                    </Indisponivel>
 
-            <InfoNome>
-                <p>Nome do comprador:</p>
-                <input placeholder="Digite seu nome"></input>
-            </InfoNome>
-            <InfoCpf>
-                <p>CPF do comprador:</p>
-                <input placeholder="Digite seu CPF"></input>
-            </InfoCpf>
-            <Reservar>
-                Reservar assento(s)
-            </Reservar>
+                </Legenda>
+
+                <InfoNome>
+                    <p>Nome do comprador:</p>
+                    <input placeholder="Digite seu nome"></input>
+                </InfoNome>
+                <InfoCpf>
+                    <p>CPF do comprador:</p>
+                    <input placeholder="Digite seu CPF"></input>
+                </InfoCpf>
+                <Link to="/sucesso">
+                    <Reservar>
+                        Reservar assento(s)
+                    </Reservar>
+                </Link>
             </Body>
             <Rodape>
                 <div>
@@ -69,20 +71,21 @@ export default function EscolherSessao() {
                     <p>{assento.day.weekday}: {assento.day.date}</p>
                 </div>
             </Rodape>
-            </>
+        </>
 
     )
 }
 const Body = styled.div`
-   max-width:450px;
+   max-width:400px;
     height: 850px;
     margin: 0px auto 5px auto;
     background-color: #FCFCFC;
     display: flex;
     flex-direction:column;
+    align-items: center;
 `
 const SelecionarAssento = styled.div`
-    max-width:450px;
+    max-width:400px;
     min-width:300px;
     height: 70px;
     display: flex;
@@ -119,6 +122,7 @@ const Assento = styled.div`
 
 `
 const Legenda = styled.div`
+    width: 400px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -222,7 +226,6 @@ const InfoNome = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 50px;
-    margin-left: 30px;
     p{
         color:#293845;
         font-size: 18px;
@@ -240,7 +243,6 @@ const InfoCpf = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-    margin-left: 30px;
     margin-bottom:15px;
     p{
         color:#293845;
