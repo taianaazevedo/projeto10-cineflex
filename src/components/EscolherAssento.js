@@ -1,7 +1,23 @@
 import styled from "styled-components";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 
 
 export default function EscolherSessao() {
+    const { idSessao } = useParams();
+    const [assento, setAssento] = useState(undefined); // informações da sessão
+
+
+    useEffect(() => {
+        const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`);
+        promise.then((resposta) => setAssento(resposta.data));
+        promise.catch((erro) => console.log(erro.response.data));
+    }, [])
+
+    if (!assento) return <div>Carregando...</div>
+
     return (
         <>
         <Body>
@@ -9,151 +25,11 @@ export default function EscolherSessao() {
                 <p>Selecione o(s) assento(s)</p>
             </SelecionarAssento>
             <AssentosDisponiveis>     
-                <Assento>
-                    <p>01</p>
-                </Assento> 
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento> 
-                <Assento>
-                    <p>01</p>
-                </Assento> 
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento> 
-                <Assento>
-                    <p>01</p>
-                </Assento> 
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento> 
-                <Assento>
-                    <p>01</p>
-                </Assento> 
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>   
-                <Assento>
-                    <p>01</p>
-                </Assento> 
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento>  
-                <Assento>
-                    <p>01</p>
-                </Assento> 
-                <Assento>
-                    <p>01</p>
-                </Assento> 
-                <Assento>
-                    <p>01</p>
-                </Assento> 
-                <Assento>
-                    <p>01</p>
-                </Assento> 
-                
+                {assento.seats.map((cadeira) => (
+                    <Assento id={cadeira.id}>
+                        <p>{cadeira.name}</p>
+                    </Assento>
+                ))}                
             </AssentosDisponiveis>
 
             <Legenda>
@@ -186,11 +62,11 @@ export default function EscolherSessao() {
             </Body>
             <Rodape>
                 <div>
-                    <img src="https://upload.wikimedia.org/wikipedia/pt/2/22/Titanic_poster.jpg" alt="" />
+                    <img src={assento.movie.posterURL} alt={assento.movie.title} />
                 </div>
                 <div>
-                    <p>Titanic</p>
-                    <p>Quinta-feira: 15h30</p>
+                    <p>{assento.movie.title}</p>
+                    <p>{assento.day.weekday}: {assento.day.date}</p>
                 </div>
             </Rodape>
             </>
@@ -223,8 +99,9 @@ const AssentosDisponiveis = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    max-width:600px;
-    min-width:300px;
+    width:400px;
+    margin-left:auto;
+    margin-right:auto;
 `
 const Assento = styled.div`
     background-color: #C3CFD9;
@@ -345,7 +222,7 @@ const InfoNome = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 50px;
-    margin-left: 10px;
+    margin-left: 30px;
     p{
         color:#293845;
         font-size: 18px;
@@ -363,7 +240,7 @@ const InfoCpf = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-    margin-left: 10px;
+    margin-left: 30px;
     margin-bottom:15px;
     p{
         color:#293845;

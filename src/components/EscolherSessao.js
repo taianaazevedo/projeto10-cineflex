@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import { useState } from "react";
@@ -16,7 +16,7 @@ export default function EscolherSessao() {
         promise.catch((erro) => console.log(erro.response.data));
     }, [])
 
-    if(!filme) return <div>Carregando...</div>
+    if (!filme) return <div>Carregando...</div>
 
 
     return (
@@ -25,24 +25,26 @@ export default function EscolherSessao() {
                 <SelecionarSessao>
                     <p>Selecione o horário</p>
                 </SelecionarSessao>
-                
+
                 {filme.days.map((filme) => (
                     <>
-                    <Dia>
-                    <p>{filme.weekday}: {filme.date}</p>
-                    </Dia>
-                    <div>        
-                        {filme.showtimes.map((horario) => (
-                             <Horario key={horario.id}>
-                             <div>
-                                 <p>{horario.name}</p>
-                             </div>
-                         </Horario>
-                        ))}
-                    </div>
+                        <Dia>
+                            <p>{filme.weekday}: {filme.date}</p>
+                        </Dia>
+                        <div>
+                            {filme.showtimes.map((horario) => (
+                                <Link to={`/assento/${horario.id}`}>
+                                    <Horario key={horario.id}>
+                                        <div>
+                                            <p>{horario.name}</p>
+                                        </div>
+                                    </Horario>
+                                </Link>
+                            ))}
+                        </div>
                     </>
-                
-                ))}      
+
+                ))}
             </Body >
             <Rodape>
                 <div>
