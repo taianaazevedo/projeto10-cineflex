@@ -5,7 +5,8 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 
-export default function EscolherSessao() {
+export default function EscolherSessao(props) {
+    const { nome, setNome, cpf, setCpf, escolheAssento, corAssento, assentoSelecionado } = props
     const { idSessao } = useParams();
     const [assento, setAssento] = useState(undefined); // informações da sessão
 
@@ -16,7 +17,12 @@ export default function EscolherSessao() {
         promise.catch((erro) => console.log(erro.response.data));
     }, [])
 
-    if (!assento) return <div>Carregando...</div>
+    if (assento === undefined) return <div>Carregando...</div>
+
+    function reservarAssento(e){
+        
+     }
+   
 
     return (
         <>
@@ -25,9 +31,11 @@ export default function EscolherSessao() {
                     <p>Selecione o(s) assento(s)</p>
                 </SelecionarAssento>
                 <AssentosDisponiveis>
-                    {assento.seats.map((cadeira) => (
-                        <Assento id={cadeira.id}>
-                            <p>{cadeira.name}</p>
+                    {assento.seats.map((assento) => (
+                        <Assento key={assento.id} 
+                        onClick={() => escolheAssento(assento)} 
+                        cor={assentoSelecionado.includes(assento) ? "#1AAE9E" : (!assento.isAvailable ? "#FBE192" : "#C3CFD9")}>
+                            <p>{assento.name}</p>
                         </Assento>
                     ))}
                 </AssentosDisponiveis>
@@ -47,20 +55,29 @@ export default function EscolherSessao() {
                     </Indisponivel>
 
                 </Legenda>
-
-                <InfoNome>
-                    <p>Nome do comprador:</p>
-                    <input placeholder="Digite seu nome"></input>
-                </InfoNome>
-                <InfoCpf>
-                    <p>CPF do comprador:</p>
-                    <input placeholder="Digite seu CPF"></input>
-                </InfoCpf>
-                <Link to="/sucesso">
-                    <Reservar>
-                        Reservar assento(s)
-                    </Reservar>
-                </Link>
+                <form onSubmit={reservarAssento}>
+                    <InfoNome>
+                        <p>Nome do comprador:</p>
+                        <input placeholder="Digite seu nome" 
+                        value={nome} 
+                        onChange={e => setNome(e.target.value)} 
+                        required>
+                        </input>
+                    </InfoNome>
+                    <InfoCpf>
+                        <p>CPF do comprador:</p>
+                        <input placeholder="Digite seu CPF" 
+                        value={cpf} 
+                        onChange={e => setCpf(e.target.value)} 
+                        required>
+                        </input>
+                    </InfoCpf>
+                    <Link to="/sucesso">
+                        <Reservar type="submit">
+                            Reservar assento(s)
+                        </Reservar>
+                    </Link>
+                </form>
             </Body>
             <Rodape>
                 <div>
@@ -83,10 +100,14 @@ const Body = styled.div`
     display: flex;
     flex-direction:column;
     align-items: center;
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 `
 const SelecionarAssento = styled.div`
-    max-width:400px;
-    min-width:300px;
+    width:400px;
     height: 70px;
     display: flex;
     align-items: center;
@@ -107,7 +128,7 @@ const AssentosDisponiveis = styled.div`
     margin-right:auto;
 `
 const Assento = styled.div`
-    background-color: #C3CFD9;
+    background-color: ${props => props.cor};
     margin: 5px;
     width:25px;
     height: 25px;
@@ -115,7 +136,8 @@ const Assento = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #808F9D;
+    border: 1px solid ${props => props.cor};
+    cursor:pointer;
     p{
         font-size: 12px;
     }
@@ -142,7 +164,7 @@ const Selecionado = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid #808F9D;
+        border: 1px solid #0E7D71;
     }
     p{
         font-size: 12px;
@@ -180,7 +202,7 @@ const Indisponivel = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid #808F9D;
+        border: 1px solid #F7C52B;
     }
     p{
         font-size: 12px;
@@ -268,4 +290,5 @@ const Reservar = styled.button`
     border-radius:10px;
     color: white;
     font-size:15px;
+    cursor:pointer;
 `

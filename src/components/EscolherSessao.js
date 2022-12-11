@@ -28,7 +28,7 @@ export default function EscolherSessao() {
 
                 {filme.days.map((filme) => (
                     <>
-                        <Dia>
+                        <Dia key={filme.id}>
                             <p>{filme.weekday}: {filme.date}</p>
                         </Dia>
                         <div>
@@ -43,12 +43,11 @@ export default function EscolherSessao() {
                             ))}
                         </div>
                     </>
-
                 ))}
             </Body >
             <Rodape>
                 <div>
-                    <img src={filme.posterURL} alt={filme.id} />
+                    <img src={filme.posterURL} alt={filme.title} key={filme.id}/>
                 </div>
                 <p>{filme.title}</p>
             </Rodape>
@@ -57,7 +56,7 @@ export default function EscolherSessao() {
 }
 
 const Body = styled.div`
-    max-width: 450px;
+    max-width: 400px;
     margin: 0px auto 5px auto;
     background-color: #FCFCFC;
     div{
@@ -98,6 +97,7 @@ const Horario = styled.div`
     align-items: center;
     justify-content: center;
     border-radius:10px;
+    cursor:pointer;
 
     p{
         color: white;

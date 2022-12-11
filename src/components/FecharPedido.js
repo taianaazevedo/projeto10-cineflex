@@ -1,8 +1,11 @@
-import styled from "styled-components"
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export default function FecharPedido(){
+export default function FecharPedido(props) {
+    const { nome, setNome, cpf, setCpf, assentoSelecionado, setAssentoSelecionado } = props
+
     return (
-         <Body>
+        <Body>
             <Pedido>
                 <p>Pedido feito com sucesso!</p>
             </Pedido>
@@ -21,15 +24,17 @@ export default function FecharPedido(){
                 <h1>Nome: blablabla</h1>
                 <h1>CPF: 123456789</h1>
             </DetalheComprador>
-            <Voltar>
-                Voltar para home
-            </Voltar>
-        </Body>    
+            <Link to="/">
+                <Voltar>
+                    Voltar para home
+                </Voltar>
+            </Link>
+        </Body>
     )
 }
 
 const Body = styled.div`
-    width:450px;
+    width:400px;
     height: auto;
     margin: 0px auto 5px auto;
     background-color: #FCFCFC;
@@ -39,7 +44,7 @@ const Body = styled.div`
    
 `
 const Pedido = styled.div`
-    width:450px;
+    width:400px;
     height: 70px;
     display: flex;
     align-items: center;
@@ -110,7 +115,6 @@ const DetalheComprador = styled.div`
 
 `
 const Voltar = styled.button`
-    
     margin-top: 80px;
     margin-bottom:20px;
     width:225px;
@@ -120,4 +124,5 @@ const Voltar = styled.button`
     border-radius:10px;
     color: white;
     font-size:15px;
+    cursor:pointer;
 `

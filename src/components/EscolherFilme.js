@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 
 export default function EscolherFilme() {
 
-    const [filme, setFilme] = useState(undefined)
+    const [filme, setFilme] = useState(undefined);
 
     useEffect(() => {
-        const promise = axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies")
-        promise.then(resposta => setFilme(resposta.data))
-        promise.catch(erro => console.log(erro.response.data))
+        const promise = axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies");
+        promise.then(resposta => setFilme(resposta.data));
+        promise.catch(erro => console.log(erro.response.data));
     }, [])
 
     if (filme === undefined) {
@@ -38,7 +38,7 @@ export default function EscolherFilme() {
 }
 
 const Body = styled.div`
-    max-width: 450px;
+    width: 400px;
     height: 800px;
     margin: 0px auto 5px auto;
     background-color: #FCFCFC;
