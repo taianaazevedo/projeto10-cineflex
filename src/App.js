@@ -12,26 +12,23 @@ function App() {
   const [assentoSelecionado, setAssentoSelecionado] = useState([]);
   const [nome, setNome] = useState("");
   const [cpf, setCpf] = useState("");
-  // const [corAssento, setCorAssento] = useState("#C3CFD9");
 
 
-  function escolheAssento(cadeira) {
-    if (cadeira.isAvailable === false) {
+  function escolheAssento(assento) {
+    if (assento.isAvailable === false) {
       alert("Esse assento não está disponível");
       return;
     }
-
-    if (!assentoSelecionado.includes(cadeira)) {
-      const listaAssento = [...assentoSelecionado, cadeira]
+    if (!assentoSelecionado.includes(assento)) {
+      const listaAssento = [...assentoSelecionado, assento]
       setAssentoSelecionado(listaAssento);
-      console.log(listaAssento);
-     
+      console.log(listaAssento);   
 
+    } else {
+      const filtraAssento = assentoSelecionado.filter((s) => !(s.id === assento.id));
+      setAssentoSelecionado([...filtraAssento]);
+      return;
     }
-
-
-
-
   }
 
   return (
@@ -43,7 +40,6 @@ function App() {
           <Route path="/sessoes/:idFilme" element={<EscolherSessao />} />
           <Route path="/assento/:idSessao" element={<EscolherAssento
             assentoSelecionado={assentoSelecionado}
-            // corAssento={corAssento}
             escolheAssento={escolheAssento}
             nome={nome}
             setNome={setNome}
