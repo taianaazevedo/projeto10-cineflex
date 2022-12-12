@@ -2,9 +2,14 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export default function FecharPedido({pedido}) {
-    const {assento, assentoSelecionado, name, cpf} = pedido
+    
+    if(pedido === null){
+        alert("Volte para a página inicial e tente novamente");
+        return;
+    }
 
-    console.log(pedido)
+    const {assento, assentoSelecionado, name, cpf} = pedido;
+
 
     return (
         <Body>

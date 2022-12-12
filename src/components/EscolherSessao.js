@@ -56,7 +56,8 @@ export default function EscolherSessao() {
 }
 
 const Body = styled.div`
-    max-width: 400px;
+    min-width: 375px;
+    max-width: 600px;
     margin: 0px auto 5px auto;
     background-color: #FCFCFC;
     div{
@@ -64,7 +65,7 @@ const Body = styled.div`
     }
 `
 const SelecionarSessao = styled.div`
-    max-width: 375px;
+    width: 100%;
     height: 80px;
     display: flex;
     align-items: center;
@@ -77,7 +78,7 @@ const SelecionarSessao = styled.div`
     }
 `
 const Dia = styled.div`
-    max-width: 375px;
+    max-width: 100%;
     margin-left: 20px;
     margin-top: 15px;
     p{

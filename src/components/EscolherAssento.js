@@ -20,7 +20,9 @@ export default function EscolherSessao({setPedido}) {
         promise.catch((erro) => console.log(erro.response.data));
     }, [])
 
-    if (assento === undefined) return <div>Carregando...</div>    
+    if (assento === undefined){
+        return <div>Carregando...</div>  
+    }   
   
   
     function escolheAssento(assento) {
@@ -54,7 +56,6 @@ export default function EscolherSessao({setPedido}) {
         const url = ("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many")
         const promise = axios.post(url, infos);
         promise.then((resposta) => {
-            console.log("sucesso")
             const detalhes = {
                 name, 
                 cpf, 
@@ -139,7 +140,7 @@ export default function EscolherSessao({setPedido}) {
     )
 }
 const Body = styled.div`
-   max-width:400px;
+    max-width: 375px;
     height: 850px;
     margin: 0px auto 5px auto;
     background-color: #FCFCFC;
@@ -153,7 +154,7 @@ const Body = styled.div`
     }
 `
 const SelecionarAssento = styled.div`
-    width:400px;
+    width:100%;
     height: 70px;
     display: flex;
     align-items: center;
@@ -166,10 +167,10 @@ const SelecionarAssento = styled.div`
  }
 `
 const AssentosDisponiveis = styled.div`
+   max-width:375px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    width:400px;
     margin-left:auto;
     margin-right:auto;
 `
@@ -190,7 +191,7 @@ const Assento = styled.div`
 
 `
 const Legenda = styled.div`
-    width: 400px;
+    min-width: 375px;
     display: flex;
     align-items: center;
     justify-content: space-around;

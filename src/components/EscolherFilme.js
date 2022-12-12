@@ -38,7 +38,8 @@ export default function EscolherFilme() {
 }
 
 const Body = styled.div`
-    width: 400px;
+    min-width: 375px;
+    max-width: 600px;
     height: 800px;
     margin: 0px auto 5px auto;
     background-color: #FCFCFC;
