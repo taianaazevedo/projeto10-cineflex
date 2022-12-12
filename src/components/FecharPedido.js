@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export default function FecharPedido(props) {
-    const { nome, setNome, cpf, setCpf, assentoSelecionado, setAssentoSelecionado } = props
+export default function FecharPedido({pedido}) {
+    const {assento, assentoSelecionado, name, cpf} = pedido
+
+    console.log(pedido)
 
     return (
         <Body>
@@ -11,18 +13,20 @@ export default function FecharPedido(props) {
             </Pedido>
             <DetalheFilme>
                 <p>Filme e sessão:</p>
-                <h1>Filme</h1>
-                <h1>Data</h1>
+                <h1>{assento.movie.title}</h1>
+                <h1>{assento.day.date} - {assento.name}</h1>
             </DetalheFilme>
             <DetalheAssento>
                 <p>Ingressos:</p>
-                <h1>Assento 1</h1>
-                <h1>Assento 2</h1>
+                {assentoSelecionado.map((a) => (
+                    <h1 key={a.id}>Assento {a.name}</h1>
+                ))}              
+                
             </DetalheAssento>
             <DetalheComprador>
                 <p>Comprador:</p>
-                <h1>Nome: blablabla</h1>
-                <h1>CPF: 123456789</h1>
+                <h1>Nome: {name}</h1>
+                <h1>CPF: {cpf}</h1>
             </DetalheComprador>
             <Link to="/">
                 <Voltar>

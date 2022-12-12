@@ -2,13 +2,16 @@ import styled from "styled-components";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
-export default function EscolherSessao(props) {
-    const { nome, setNome, cpf, setCpf, escolheAssento, corAssento, assentoSelecionado } = props
+export default function EscolherSessao({setPedido}) {
     const { idSessao } = useParams();
     const [assento, setAssento] = useState(undefined); // informações da sessão
+    const [assentoSelecionado, setAssentoSelecionado] = useState([]);
+    const [name, setName] = useState("");
+    const [cpf, setCpf] = useState("");
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -17,10 +20,51 @@ export default function EscolherSessao(props) {
         promise.catch((erro) => console.log(erro.response.data));
     }, [])
 
-    if (assento === undefined) return <div>Carregando...</div>
+    if (assento === undefined) return <div>Carregando...</div>    
+  
+  
+    function escolheAssento(assento) {
+      if (assento.isAvailable === false) {
+        alert("Esse assento não está disponível");
+        return;
+      }
+      if (!assentoSelecionado.includes(assento)) {
+        const listaAssento = [...assentoSelecionado, assento]
+        setAssentoSelecionado(listaAssento); 
+        return;
+  
+      } else {
+        const filtraAssento = assentoSelecionado.filter((cadeira) => !(cadeira.id === assento.id));
+        setAssentoSelecionado([...filtraAssento]);
+        return;
+      }
+    }
 
     function reservarAssento(e){
-        
+        e.preventDefault();
+        if(assentoSelecionado.length === 0){
+            alert("Você deve selecionar pelo menos um assento");
+            return;
+        }
+        const infos = {
+            ids: assentoSelecionado.map((e) => e.id) , 
+            name, 
+            cpf
+        }
+        const url = ("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many")
+        const promise = axios.post(url, infos);
+        promise.then((resposta) => {
+            console.log("sucesso")
+            const detalhes = {
+                name, 
+                cpf, 
+                assentoSelecionado,
+                assento
+            }
+            setPedido(detalhes)
+            navigate("/sucesso")
+        });
+        promise.catch((erro) => alert("Por favor, tente reservar seus assentos novamente."))
      }
    
 
@@ -34,6 +78,7 @@ export default function EscolherSessao(props) {
                     {assento.seats.map((assento) => (
                         <Assento key={assento.id} 
                         onClick={() => escolheAssento(assento)} 
+                        corBorda={assentoSelecionado.includes(assento) ? "#0E7D71" : (!assento.isAvailable ? "#F7C52B" : "#7B8B99")}
                         cor={assentoSelecionado.includes(assento) ? "#1AAE9E" : (!assento.isAvailable ? "#FBE192" : "#C3CFD9")}>
                             <p>{assento.name}</p>
                         </Assento>
@@ -59,8 +104,8 @@ export default function EscolherSessao(props) {
                     <InfoNome>
                         <p>Nome do comprador:</p>
                         <input placeholder="Digite seu nome" 
-                        value={nome} 
-                        onChange={e => setNome(e.target.value)} 
+                        value={name} 
+                        onChange={e => setName(e.target.value)} 
                         required>
                         </input>
                     </InfoNome>
@@ -69,14 +114,15 @@ export default function EscolherSessao(props) {
                         <input placeholder="Digite seu CPF" 
                         value={cpf} 
                         onChange={e => setCpf(e.target.value)} 
-                        required>
+                        required
+                        maxLength="11"
+                        minLength="11"
+                        >
                         </input>
                     </InfoCpf>
-                    <Link to="/sucesso">
                         <Reservar type="submit">
                             Reservar assento(s)
                         </Reservar>
-                    </Link>
                 </form>
             </Body>
             <Rodape>
@@ -136,7 +182,7 @@ const Assento = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid ${props => props.cor};
+    border: 1px solid ${props => props.corBorda};
     cursor:pointer;
     p{
         font-size: 12px;
@@ -244,7 +290,7 @@ const Rodape = styled.div`
     }
 }
 `
-const InfoNome = styled.div`
+const InfoNome = styled.label`
     display: flex;
     flex-direction: column;
     margin-top: 50px;
@@ -261,7 +307,7 @@ const InfoNome = styled.div`
         box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
     }
 `
-const InfoCpf = styled.div`
+const InfoCpf = styled.label`
     display: flex;
     flex-direction: column;
     margin-top: 20px;
