@@ -12,7 +12,7 @@ export default function EscolherSessao() {
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`);
-        promise.then((resposta) => console.log(resposta.data));
+        promise.then((resposta) => setFilme(resposta.data));
         promise.catch((erro) => console.log(erro.response.data));
     }, [])
 
