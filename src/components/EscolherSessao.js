@@ -28,18 +28,18 @@ export default function EscolherSessao() {
 
                 {filme.days.map((filme) => (
                     <>
-                        <Dia key={filme.id}  data-test="showtime">
-                            <p data-test="movie-day">{filme.weekday}: {filme.date}</p>
+                        <Dia key={filme.id} data-test="movie-day">
+                            <p>{filme.weekday}: {filme.date}</p>
+                            <Sessoes>
+                                {filme.showtimes.map((horario) => (
+                                    <Link to={`/assento/${horario.id}`} key={horario.id} data-test="showtime">
+                                        <Horario>
+                                            {horario.name}
+                                        </Horario>
+                                    </Link>
+                                ))}
+                            </Sessoes>
                         </Dia>
-                        <div>
-                            {filme.showtimes.map((horario) => (
-                                <Link to={`/assento/${horario.id}`} key={horario.id} >
-                                    <Horario>                                        
-                                        {horario.name}                                       
-                                    </Horario>
-                                </Link>
-                            ))}
-                        </div>
                     </>
                 ))}
             </Body >
@@ -58,9 +58,6 @@ const Body = styled.div`
     max-width: 600px;
     margin: 0px auto 5px auto;
     background-color: #FCFCFC;
-    div{
-        display: flex;
-    }
 `
 const SelecionarSessao = styled.div`
     width: 100%;
@@ -85,6 +82,10 @@ const Dia = styled.div`
         color: #293845; 
     }
 `
+const Sessoes = styled.div`
+    display: flex;
+`
+
 const Horario = styled.button`
     margin-top: 20px;
     margin-left:20px;
