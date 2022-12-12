@@ -135,7 +135,7 @@ export default function EscolherSessao({setPedido}) {
                 </div>
                 <div>
                     <p>{assento.movie.title}</p>
-                    <p>{assento.day.weekday}: {assento.day.date}</p>
+                    <p>{assento.day.weekday}: {assento.name}</p>
                 </div>
             </Rodape>
         </>
