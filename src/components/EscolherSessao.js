@@ -12,7 +12,7 @@ export default function EscolherSessao() {
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`);
-        promise.then((resposta) => setFilme(resposta.data));
+        promise.then((resposta) => console.log(resposta.data));
         promise.catch((erro) => console.log(erro.response.data));
     }, [])
 
@@ -32,7 +32,7 @@ export default function EscolherSessao() {
                             <p>{filme.weekday}: {filme.date}</p>
                             <Sessoes>
                                 {filme.showtimes.map((horario) => (
-                                    <Link to={`/assento/${horario.id}`} key={horario.id} data-test="showtime">
+                                    <Link to={`/assentos/${horario.id}`} key={horario.id} data-test="showtime">
                                         <Horario>
                                             {horario.name}
                                         </Horario>

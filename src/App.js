@@ -18,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<EscolherFilme />} />
           <Route path="/sessoes/:idFilme" element={<EscolherSessao />} />
-          <Route path="/assento/:idSessao" element={<EscolherAssento 
+          <Route path="/assentos/:idSessao" element={<EscolherAssento 
           setPedido={setPedido}/>} />
           <Route path="/sucesso" element={<FecharPedido 
           pedido={pedido}/>} />
