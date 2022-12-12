@@ -26,7 +26,7 @@ export default function EscolherFilme() {
                 </SelecionarFilme>
                 <ListaFilmes>
                     {filme.map((filme) => (
-                         <Filme key={filme.id}>
+                         <Filme key={filme.id} data-test="movie">
                             <Link to={`/sessoes/${filme.id}`}>
                             <img src={filme.posterURL} alt={filme.title} />
                             </Link>

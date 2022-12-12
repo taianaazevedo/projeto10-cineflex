@@ -28,13 +28,13 @@ export default function EscolherSessao() {
 
                 {filme.days.map((filme) => (
                     <>
-                        <Dia key={filme.id}>
+                        <Dia key={filme.id} data-test="movie-day">
                             <p>{filme.weekday}: {filme.date}</p>
                         </Dia>
                         <div>
                             {filme.showtimes.map((horario) => (
                                 <Link to={`/assento/${horario.id}`}>
-                                    <Horario key={horario.id}>
+                                    <Horario key={horario.id} data-test="showtime">
                                         <div>
                                             <p>{horario.name}</p>
                                         </div>
@@ -45,9 +45,9 @@ export default function EscolherSessao() {
                     </>
                 ))}
             </Body >
-            <Rodape>
+            <Rodape data-test="footer">
                 <div>
-                    <img src={filme.posterURL} alt={filme.title} key={filme.id}/>
+                    <img src={filme.posterURL} alt={filme.title} key={filme.id} />
                 </div>
                 <p>{filme.title}</p>
             </Rodape>

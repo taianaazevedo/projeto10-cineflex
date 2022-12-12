@@ -16,25 +16,25 @@ export default function FecharPedido({pedido}) {
             <Pedido>
                 <p>Pedido feito com sucesso!</p>
             </Pedido>
-            <DetalheFilme>
+            <DetalheFilme data-test="movie-info">
                 <p>Filme e sessão:</p>
                 <h1>{assento.movie.title}</h1>
                 <h1>{assento.day.date} - {assento.name}</h1>
             </DetalheFilme>
-            <DetalheAssento>
+            <DetalheAssento data-test="seats-info">
                 <p>Ingressos:</p>
                 {assentoSelecionado.map((a) => (
                     <h1 key={a.id}>Assento {a.name}</h1>
                 ))}              
                 
             </DetalheAssento>
-            <DetalheComprador>
+            <DetalheComprador data-test="client-info">
                 <p>Comprador:</p>
                 <h1>Nome: {name}</h1>
                 <h1>CPF: {cpf}</h1>
             </DetalheComprador>
             <Link to="/">
-                <Voltar>
+                <Voltar data-test="go-home-btn">
                     Voltar para home
                 </Voltar>
             </Link>

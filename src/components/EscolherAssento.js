@@ -78,6 +78,7 @@ export default function EscolherSessao({setPedido}) {
                 <AssentosDisponiveis>
                     {assento.seats.map((assento) => (
                         <Assento key={assento.id} 
+                        data-test="seat"
                         onClick={() => escolheAssento(assento)} 
                         corBorda={assentoSelecionado.includes(assento) ? "#0E7D71" : (!assento.isAvailable ? "#F7C52B" : "#7B8B99")}
                         cor={assentoSelecionado.includes(assento) ? "#1AAE9E" : (!assento.isAvailable ? "#FBE192" : "#C3CFD9")}>
@@ -105,6 +106,7 @@ export default function EscolherSessao({setPedido}) {
                     <InfoNome>
                         <p>Nome do comprador:</p>
                         <input placeholder="Digite seu nome" 
+                        data-test="client-name"
                         value={name} 
                         onChange={e => setName(e.target.value)} 
                         required>
@@ -113,6 +115,7 @@ export default function EscolherSessao({setPedido}) {
                     <InfoCpf>
                         <p>CPF do comprador:</p>
                         <input placeholder="Digite seu CPF" 
+                        data-test="client-cpf"
                         value={cpf} 
                         onChange={e => setCpf(e.target.value)} 
                         required
@@ -121,12 +124,12 @@ export default function EscolherSessao({setPedido}) {
                         >
                         </input>
                     </InfoCpf>
-                        <Reservar type="submit">
+                        <Reservar type="submit" data-test="book-seat-btn">
                             Reservar assento(s)
                         </Reservar>
                 </form>
             </Body>
-            <Rodape>
+            <Rodape data-test="footer">
                 <div>
                     <img src={assento.movie.posterURL} alt={assento.movie.title} />
                 </div>
