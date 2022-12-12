@@ -34,9 +34,9 @@ export default function EscolherSessao() {
                         <div>
                             {filme.showtimes.map((horario) => (
                                 <Link to={`/assento/${horario.id}`}>
-                                    <Horario key={horario.id} data-test="showtime">
+                                    <Horario key={horario.id}>
                                         <div>
-                                            <p>{horario.name}</p>
+                                            <p data-test="showtime">{horario.name}</p>
                                         </div>
                                     </Horario>
                                 </Link>
