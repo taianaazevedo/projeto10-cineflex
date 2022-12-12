@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function EscolherSessao() {
     const { idFilme } = useParams();
-    const [filme, setFilme] = useState(undefined); // informações da sessão
+    const [filme, setFilme] = useState(null); // informações da sessão
 
 
     useEffect(() => {
@@ -33,7 +33,7 @@ export default function EscolherSessao() {
                         </Dia>
                         <div>
                             {filme.showtimes.map((horario) => (
-                                <Link to={`/assento/${horario.id}`}>
+                                <Link to={`/assento/${horario.id}`} key={horario.id}>
                                     <Horario key={horario.id} data-test="showtime">                                        
                                             <p>{horario.name}</p>                                        
                                     </Horario>
@@ -85,7 +85,7 @@ const Dia = styled.div`
         color: #293845; 
     }
 `
-const Horario = styled.div`
+const Horario = styled.button`
     margin-top: 20px;
     margin-left:20px;
     margin-bottom: 15px;
@@ -96,6 +96,7 @@ const Horario = styled.div`
     align-items: center;
     justify-content: center;
     border-radius:10px;
+    border: none;
     cursor:pointer;
     p{
         color: white;
